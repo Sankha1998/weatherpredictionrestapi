@@ -38,20 +38,24 @@ def citytime(url,headers):
     response = requests.get(url, headers=headers).text
     soup = bs(response, 'lxml')
     alltime = []
+
     for i in soup.find_all('tr'):
         try:
             x = (i.find('th').text).replace(u'\xa0', '')
+
             if x != 'Time':
                 alltime.append(x[:5])  # time
             else:
                 pass
         except:
             pass
-
+    print(alltime)
     time = []
     for i in alltime[1:]:
-        if float(i) >= 12:
-            time.append(i + 'PM')
+        h,m = i.split(".")
+
+        if int(h) >= 12:
+            time.append(i+ 'PM')
         else:
             time.append(i + 'AM')
 

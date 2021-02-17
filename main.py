@@ -4,7 +4,7 @@ import bs4
 from bs4 import BeautifulSoup as bs
 import lxml
 from flask_cors import CORS
-
+from dateutil.parser import parse
 
 app = Flask(__name__)
 CORS(app)
@@ -41,24 +41,18 @@ def citytime(url,headers):
 
     for i in soup.find_all('tr'):
         try:
+
             x = (i.find('th').text).replace(u'\xa0', '')
 
             if x != 'Time':
-                alltime.append(x[:5])  # time
+
+                alltime.append(parse(x[:5].strip()).strftime("%d:%H"))  # time
             else:
                 pass
         except:
             pass
-    #print(alltime)
-    time = []
-    for i in alltime[1:]:
-       # h,m = i.split(".")
-       time.append(i)
-        # if int(h) >= 12:
-        #    time.append(i+ 'PM')
-        # else:
-        #    time.append(i + 'AM')
 
+    time = alltime[1:]
     return time
 
 

@@ -49,15 +49,15 @@ def citytime(url,headers):
                 pass
         except:
             pass
-    print(alltime)
+    #print(alltime)
     time = []
     for i in alltime[1:]:
-        h,m = i.split(".")
-
-        if int(h) >= 12:
-            time.append(i+ 'PM')
-        else:
-            time.append(i + 'AM')
+       # h,m = i.split(".")
+       time.append(i)
+        # if int(h) >= 12:
+        #    time.append(i+ 'PM')
+        # else:
+        #    time.append(i + 'AM')
 
     return time
 

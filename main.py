@@ -46,7 +46,7 @@ def citytime(url,headers):
 
             if x != 'Time':
 
-                alltime.append(parse(x[:5].strip()).strftime('%Y-%m-%d %H:%M:%S'))  # time
+                alltime.append(parse(x[:5].strip()).strftime('%H:%M'))  # time
             else:
                 pass
         except:
